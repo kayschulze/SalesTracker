@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using SalesTracker.ViewModels
+
+@model RegisterViewModel
+
+<h2>Register Here!</h2>
+<hr />
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    @Html.LabelFor(user => user.Email)
+    @Html.TextBoxFor(user => user.Email)
+
+    @Html.LabelFor(user => user.Password)
+    @Html.PasswordFor(user => user.Password)
+
+    @Html.LabelFor(user => user.ConfirmPassword)
+    @Html.PasswordFor(user => user.ConfirmPassword)
+
+    @Html.LabelFor(user => user.FirstName)
+    @Html.TextBoxFor(user => user.FirstName)
+
+    @Html.LabelFor(user => user.LastName)
+    @Html.TextBoxFor(user => user.LastName)
+
+    <input type="submit" value="Register" />
+}
