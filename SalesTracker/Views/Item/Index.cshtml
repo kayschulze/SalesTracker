@@ -1,18 +1,20 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Sales Tracker</title>
      <script type="text/javascript">
     $(document).ready(function () {
         $('.new-item').submit(function (event) {
-			event.preventDefault();
+            event.preventDefault();
             $.ajax({
-			    url: '@Url.Action("NewItem")',
+                url: '@Url.Action("NewItem")',
                 type: 'POST',
                 dataType: 'json',
-			    data: $(this).serialize(),
+                data: $(this).serialize(),
                 success: function (result) {
-			        console.log(result.itemName);
+                    console.log(result.itemName);
                     var resultMessage = 'You\'ve added a new item to the database!<br>Id: ' + result.itemId + '<br>Name: ' + result.itemName + '<br>Description: ' + result.itemDescription;
                     $('#newItemResultText').html(resultMessage);
                 }
@@ -20,26 +22,55 @@
         });
     });
     </script>
-    	
+
+	<!--<script>
+    $(document).ready(function() {
+        $(.all-items).submit(function(event) {
+            event.preventDefault;
+            $.ajax({
+                url: '@Url.Action("ListAllItems")',
+                type: 'GET',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (result) {
+                    var resultsView = '<ul>';
+                    for (var i = 0; i < result.length; i++) {
+                        resultsView += '<li>ID: ' + result[i].itemId + ', Name: ' + result[i].itemName + 
+, Description: ' + result[i].itemDescription + '</li>';
+                    }
+                    resultsView += '</ul>';
+                    $('#listOfItems').html(resultsView);
+                }
+            });
+        });
+	});
+    </script>-->
+        
 </head>
-	
+    
 <body>
-		
-	<h2>Add a new Item</h2>
+
+    <h2>All Items List</h2>
+    <form action="ListAllItems" class="all-items">
+        <button type="click">List All</button>
+    </form>
+   <div id="listOfItems"></div>
+        
+    <h2>Add a new Item</h2>
     <form action="NewItem" class="new-item">
-			
+            
         <label for="ItemName">Item Name: </label>
         <input type="text" name="ItemName" />
-			
+            
         <label for="ItemDescription">Item Description: </label>
         <input type="text" name="ItemDescription" />
 
         <label for="ItemPrice">Item Price: </label>
         <input type="number" name="ItemPrice" />
-			
+            
         <button type="submit">Submit</button>
     </form>
     <div id="newItemResultText"></div>
-		
+        
 </body>
 </html>

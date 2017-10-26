@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using SalesTracker.Models;
@@ -55,5 +57,12 @@ namespace SalesTracker.Controllers
             _db.SaveChanges();
             return Json(MyNewItem);
         }
+
+        public IActionResult ListAllItems()
+        {
+            var itemsList = _db.Items.ToList();
+            return View(itemsList);
+        }
+
     }
 }

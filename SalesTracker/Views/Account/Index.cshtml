@@ -11,6 +11,7 @@
 {
     <p>Hello @User.Identity.Name!</p>
 
+    <!--@Html.ActionLink("All Items", "ListAllItems", "Item")-->
     @Html.ActionLink("Your Sales Items", "Index", "Item")
 
     using (Html.BeginForm("LogOff", "Account"))
