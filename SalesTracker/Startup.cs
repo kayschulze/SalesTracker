@@ -30,7 +30,6 @@ namespace SalesTracker
                     .AddDbContext<SalesTrackerContext>(options =>
                                               options
                                                    .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
-
             // This is new
             services.AddIdentity<SalesAssociate, IdentityRole>()
             .AddEntityFrameworkStores<SalesTrackerContext>()

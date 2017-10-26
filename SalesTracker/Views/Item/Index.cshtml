@@ -1,27 +1,28 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>AJAX Demo</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script>
+    <title>Sales Tracker</title>
+     <script type="text/javascript">
     $(document).ready(function () {
-		$('.new-item').submit(function (event) {
-            event.preventDefault();
+        $('.new-item').submit(function (event) {
+			event.preventDefault();
             $.ajax({
-                url: '@Url.Action("NewItem")',
+			    url: '@Url.Action("NewItem")',
                 type: 'POST',
                 dataType: 'json',
-                data: $(this).serialize(),
+			    data: $(this).serialize(),
                 success: function (result) {
-               
-                    $('#newItemResultText').html('Added');
+			        console.log(result.itemName);
+                    var resultMessage = 'You\'ve added a new item to the database!<br>Id: ' + result.itemId + '<br>Name: ' + result.itemName + '<br>Description: ' + result.itemDescription;
+                    $('#newItemResultText').html(resultMessage);
                 }
             });
         });
-	});
-			
-</script>		
+    });
+    </script>
+    	
 </head>
+	
 <body>
 		
 	<h2>Add a new Item</h2>
@@ -35,9 +36,6 @@
 
         <label for="ItemPrice">Item Price: </label>
         <input type="number" name="ItemPrice" />
-
-		 <label for="SalesAssociateId">SA ID: </label>
-        <input type="number" name="SalesAssociateId" value="0" />
 			
         <button type="submit">Submit</button>
     </form>

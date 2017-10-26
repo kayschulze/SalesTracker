@@ -12,7 +12,7 @@ namespace SalesTracker.Controllers
     [Authorize]
     public class ItemController : Controller
     {
-        private readonly SalesTrackerContext _db;
+        private SalesTrackerContext _db;
         private readonly UserManager<SalesAssociate> _userManager;
 
         public ItemController(UserManager<SalesAssociate> userManager, SalesTrackerContext db)
@@ -48,9 +48,9 @@ namespace SalesTracker.Controllers
         }
 
         [HttpPost]
-        public IActionResult NewItem(string ItemName, string ItemDescription, int ItemPrice, int SalesAssociateId)
+        public IActionResult NewItem(string ItemName, string ItemDescription, int ItemPrice)
         {
-            Item MyNewItem = new Item(ItemName,ItemDescription,ItemPrice,SalesAssociateId = 0);
+            Item MyNewItem = new Item(ItemName, ItemDescription, ItemPrice);
             _db.Items.Add(MyNewItem);
             _db.SaveChanges();
             return Json(MyNewItem);

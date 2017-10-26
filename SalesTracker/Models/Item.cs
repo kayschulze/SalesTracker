@@ -16,13 +16,6 @@ namespace SalesTracker.Models
 
         public virtual SalesAssociate SalesAssociate { get; set; }
 
-
-        Item()
-        {
-            
-        }
-
-
         public Item(string itemName, string itemDescription, int itemPrice, int salesAssociateId = 0)
         {
             ItemName = itemName;
@@ -30,5 +23,7 @@ namespace SalesTracker.Models
             ItemPrice = itemPrice;
             SalesAssociateId = salesAssociateId;
         }
+
+        public Item() {}
     }
 }
